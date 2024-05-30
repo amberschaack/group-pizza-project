@@ -15,6 +15,7 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
     }
 
     return (
+        <>
         <div id="cards">
             {isShown ? 
             <Card sx={{ maxWidth: 250 }}>
@@ -25,6 +26,9 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
                         <Typography gutterBottom sx={{ fontSize: 16 }} component="div">{pizza.price}</Typography>
                     </CardContent>
                 </CardActionArea>
+                <CardActions>
+                    <Button>Add</Button>
+                </CardActions>
             </Card>
             :
             <Card sx={{ maxWidth: 250 }}>
@@ -36,8 +40,12 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
                     <Typography gutterBottom sx={{ fontSize: 16 }} component="div">{pizza.price}</Typography>
                 </CardContent>
             </CardActionArea>
+            <CardActions>
+                    <Button>Add</Button>
+                </CardActions>
             </Card>
             }
         </div>
+        </>
     )
 }

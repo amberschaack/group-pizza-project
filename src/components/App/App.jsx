@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import PizzaList from './PizzaList/PizzaList';
+import Header from '../Header/Header';
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
@@ -24,9 +25,7 @@ function App() {
 
   return (
     <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza</h1>
-      </header>
+      <Header />
       <PizzaList 
       pizzas={pizzas}
       fetchPizzas={fetchPizzas}
