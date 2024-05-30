@@ -1,82 +1,75 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import axios from "axios";
+import CustomerList from "../CustomerList/CustomerList";
+// import axios from "axios";
 
-export default function CustomerForm({customerInfo}){
+export default function CustomerForm(){
     const dispatch = useDispatch();
 
-    const [customerName, setCustomerName] = useState("");
-    const [streetAddress, setStreetAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [zip, setZip] = useState("");
+    const [customerInfo, setCustomerInfo] = useState({ customer_name: '', street_address: '', city: '', zip: ''});
 
-    const handleSubmit = (event) => {
+    const handleNameChange = (event) => {
         event.preventDefault();
-        console.log(`Add customer info`, customerName);
-        axios.post(`/api/order`, 
-        {customer_name: customerName, 
-        street_address: streetAddress,
-        city: city,
-        zip: zip,
+        setCustomerInfo({
+            ...customerInfo,
+            customer_name: event.target.value
         })
-        .then(() => {
-            dispatch({
-                type: "ADD_INFO",
-
-                payload: customerName,
-
-                payload: streetAddress,
-
-                payload: city,
-
-                payload: zip,
-            });
-            setCustomerName("");
-            setStreetAddress("");
-            setCity("");
-            setZip("");
-            customerInfo();
-        })
-        .catch((error) => {
-            console.log(error);
-            alert(`Couldnt add customer`)
-        });
     }
 
+    const handleAddressChange = (event) => {
+        event.preventDefault();
+        setCustomerInfo({
+            ...customerInfo,
+            street_address: event.target.value
+        })
+    }
+
+    const handleCityChange = (event) => {
+        event.preventDefault();
+        setCustomerInfo({
+            ...customerInfo,
+            city: event.target.value
+        })
+    }
+
+    const handleZipChange = (event) => {
+        event.preventDefault();
+        setCustomerInfo({
+            ...customerInfo,
+            zip: event.target.value
+        })
+    }
+    
+    const addInfo = (event) => {
+        event.preventDefault();
+        dispatch({ type: 'ADD_INFO', payload: customerInfo});
+        setCustomerInfo('');
+    }
+    
+    
+    
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(event) => addInfo(event)}>
                 <input
                     type="text"
-                    value={customerName}
                     placeholder="Name"
-                    onChange={(event) => {
-                        setCustomerName(event.target.value);
-                    }}
+                    onChange={handleNameChange}
                 />
                 <input
                     type="text"
-                    value={streetAddress}
                     placeholder="Street Address"
-                    onChange={(event) => {
-                        setStreetAddress(event.target.value);
-                    }}
+                    onChange={handleAddressChange}
                 />
                 <input
                     type="text"
-                    value={city}
                     placeholder="City"
-                    onChange={(event) => {
-                        setCity(event.target.value);
-                    }}
+                    onChange={handleCityChange}
                 />
                 <input
-                    type="text"
-                    value={zip}
+                    type="number"
                     placeholder="Zip"
-                    onChange={(event) => {
-                        setZip(event.target.value);
-                    }}
+                    onChange={handleZipChange}
                 />
                 <button type="submit">Next</button>
             </form>

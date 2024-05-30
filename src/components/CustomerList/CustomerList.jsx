@@ -1,23 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import CustomerListInfo from "../CustomerListInfo/CustomerListInfo.jsx";
 
 export default function CustomerList(){
 
-    const personalInfo = useSelector(store => store.personalInfo);
-
+    const customerReducer = useSelector(store => store.customerReducer);
+    // console.log(customerReducer);
+    
     return (
         <div>
-            <ul>{personalInfo.map((info) => {
-                return (
-                    <div>
-                        <li>{info.customer_name}</li>
-                        <li>{info.street_address}</li>
-                        <li>{info.city}</li>
-                        <li>{info.zip}</li>
-                    </div>
-                )
-            })}
-            </ul>
+            <li>{customerReducer.customer_name}</li>
+            <li>{customerReducer.street_address}</li>
+            <li>{customerReducer.city}</li>
+            <li>{customerReducer.zip}</li>
         </div>
             
     )

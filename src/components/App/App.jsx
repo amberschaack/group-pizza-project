@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     console.log('in useEffect');
     customerInfo();
-  }, [])
+  }, []);
 
   const customerInfo = () => {
     axios({
@@ -40,7 +40,10 @@ function App() {
       <p>Pizza is great.</p>
     
       <CustomerForm customerInfo={customerInfo}/>
-      <CustomerList />
+      <div>
+        
+      </div>
+      <CustomerList customerInfo={customerInfo}/>
     </div>
   );
 }
