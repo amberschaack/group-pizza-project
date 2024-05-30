@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 export default function CustomerForm() {
-    const [customerInfo, setCustomerInfo] = useState({ customer_name: '', street_address: '', city: '', zip: ''});
+    const [customerInfo, setCustomerInfo] = useState({ customer_name: '', street_address: '', city: '', zip: '', type: ''});
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -50,6 +50,22 @@ export default function CustomerForm() {
         setCustomerInfo();
     }
 
+    const handlePickupChange = (event) => {
+        event.preventDefault();
+        setCustomerInfo({
+            ...customerInfo,
+            type: event.target.value
+        })
+    }
+
+    const handleDeliveryChange = (event) => {
+        event.preventDefault();
+        setCustomerInfo({
+            ...customerInfo,
+            type: event.target.value
+        })
+    }
+
     return (
         <>
         <form onSubmit={handleSubmit}>
@@ -57,6 +73,14 @@ export default function CustomerForm() {
             <input type="text" placeholder="Street Address" onChange={handleAddressChange} />
             <input type="text" placeholder="City" onChange={handleCityChange} />
             <input type="text" placeholder="Zip Code" onChange={handleZipChange} />
+            <label>
+                <input type="radio" value="Pickup" onChange={handlePickupChange} name="method" />
+                Pickup
+            </label>
+            <label>
+                <input type="radio" value="Delivery" onChange={handleDeliveryChange} name="method" />
+                Delivery
+            </label>
             <button type="submit" onClick={nextPage}>Next</button>
         </form>
         </>
