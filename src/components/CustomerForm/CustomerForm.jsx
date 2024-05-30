@@ -1,9 +1,16 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function CustomerForm() {
     const [customerInfo, setCustomerInfo] = useState({ customer_name: '', street_address: '', city: '', zip: ''});
     const dispatch = useDispatch();
+    const history = useHistory();
+
+    const nextPage = () => {
+        console.log('Go to next page');
+        history.push('/api/checkout');
+    }
 
     const handleNameChange = (event) => {
         event.preventDefault();
@@ -50,7 +57,7 @@ export default function CustomerForm() {
             <input type="text" placeholder="Street Address" onChange={handleAddressChange} />
             <input type="text" placeholder="City" onChange={handleCityChange} />
             <input type="text" placeholder="Zip Code" onChange={handleZipChange} />
-            <button type="submit">Next</button>
+            <button type="submit" onClick={nextPage}>Next</button>
         </form>
         </>
     )

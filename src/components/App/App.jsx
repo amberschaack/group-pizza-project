@@ -4,6 +4,8 @@ import './App.css';
 import PizzaList from './PizzaList/PizzaList';
 import Header from '../Header/Header';
 import CustomerForm from '../CustomerForm/CustomerForm';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import Checkout from '../Checkout/Checkout';
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
@@ -25,14 +27,23 @@ function App() {
   }
 
   return (
+    <Router>
     <div className='App'>
       <Header />
+      <Route path='/' exact>
       <PizzaList 
       pizzas={pizzas}
       fetchPizzas={fetchPizzas}
       />
-      <CustomerForm />
+      </Route>
+      <Route path='/api/customer_form'>
+        <CustomerForm />
+      </Route>
+      <Route path='/api/checkout'>
+        <Checkout />
+      </Route>
     </div>
+    </Router>
   );
 }
 
