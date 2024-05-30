@@ -7,14 +7,18 @@ const pizzaReducer = (state = [], action) => {
     return Number(state) + Number(action.payload);
   } else if (action.type === 'REMOVE_PIZZA') {
     return Number(state) - Number(action.payload);
+  } else if (action.type === 'CLEAR'){
+    return [];
   }
   return state;
 }
 
-const customerReducer = (state = [], action) => {
+const customerReducer = (state = {}, action) => {
   if(action.type === 'ADD_INFO'){
     console.log(`Customer Info ${action.payload}`);
-    return [...state, action.payload];
+    return action.payload;
+  } else if (action.type === 'CLEAR'){
+    return {};
   } else{
     return state;
   }
