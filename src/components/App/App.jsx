@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import PizzaList from './PizzaList/PizzaList';
 import Header from '../Header/Header';
+import CustomerForm from '../CustomerForm/CustomerForm';
 
 function App() {
   const [pizzas, setPizzas] = useState([]);
@@ -30,6 +31,7 @@ function App() {
       pizzas={pizzas}
       fetchPizzas={fetchPizzas}
       />
+      <CustomerForm />
     </div>
   );
 }
