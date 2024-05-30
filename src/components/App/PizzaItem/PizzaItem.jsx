@@ -5,13 +5,24 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
 export default function PizzaItem({ pizza, fetchPizzas }) {
     const [isShown, setIsShown] = useState(true);
+    const dispatch = useDispatch();
 
     const togglePic = (pizzaid) => {
         console.log('Clicked', pizzaid);
         setIsShown(!isShown);
+    }
+
+    const addPizza = () => {
+        console.log(pizza.price);
+        dispatch({ type: 'ADD_PIZZA', payload: pizza.price})
+    }
+
+    const removePizza = () => {
+        dispatch({ type: 'REMOVE_PIZZA', payload: pizza.price})
     }
 
     return (
@@ -27,7 +38,8 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button>Add</Button>
+                    <Button onClick={addPizza}>Add</Button>
+                    <Button onClick={removePizza}>Remove</Button>
                 </CardActions>
             </Card>
             :
@@ -40,9 +52,6 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
                     <Typography gutterBottom sx={{ fontSize: 16 }} component="div">{pizza.price}</Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                    <Button>Add</Button>
-                </CardActions>
             </Card>
             }
         </div>
