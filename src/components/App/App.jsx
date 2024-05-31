@@ -7,6 +7,7 @@ import CustomerForm from '../CustomerForm/CustomerForm';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Checkout from '../Checkout/Checkout';
 import { useDispatch } from 'react-redux';
+import Admin from '../Admin/Admin';
 
 function App() {
   const dispatch = useDispatch();  
@@ -40,6 +41,9 @@ function App() {
       </Route>
       <Route path='/api/checkout'>
         <Checkout />
+      </Route>
+      <Route path='/api/admin'>
+        <Admin />
       </Route>
     </div>
     </Router>

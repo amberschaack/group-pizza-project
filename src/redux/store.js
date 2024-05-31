@@ -3,12 +3,12 @@ import logger from 'redux-logger';
 
 // Be sure to replace this reducer! 🙂
 const priceReducer = (state = 0, action) => {
-  if (action.type === 'ADD_PIZZA') {
+  if (action.type === 'CLEAR'){
+    return [];
+  } else if (action.type === 'ADD_PIZZA') {
     return Number(state) + Number(action.payload);
   } else if (action.type === 'REMOVE_PIZZA') {
     return Number(state) - Number(action.payload);
-  } else if (action.type === 'CLEAR'){
-    return [];
   }
   return state;
 }
@@ -25,9 +25,9 @@ const cartReducer = (state = [], action) => {
     return [...state, action.payload];
   } else if (action.type === 'REMOVE_FROM_CART') {
     return state.filter((pizza) => Number(pizza.id) !== Number(action.payload.id));
-  } else if(action.type === 'CLEAR'){
+  } else if (action.type === 'CLEAR'){
     return [];
-  }
+}
   return state;
 }
 
