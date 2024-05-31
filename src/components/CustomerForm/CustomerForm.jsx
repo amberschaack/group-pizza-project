@@ -51,7 +51,6 @@ export default function CustomerForm() {
     }
 
     const handlePickupChange = (event) => {
-        event.preventDefault();
         setCustomerInfo({
             ...customerInfo,
             type: event.target.value
@@ -59,7 +58,6 @@ export default function CustomerForm() {
     }
 
     const handleDeliveryChange = (event) => {
-        event.preventDefault();
         setCustomerInfo({
             ...customerInfo,
             type: event.target.value
@@ -69,20 +67,21 @@ export default function CustomerForm() {
     return (
         <>
         <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="Name" onChange={handleNameChange} />
-            <input type="text" placeholder="Street Address" onChange={handleAddressChange} />
-            <input type="text" placeholder="City" onChange={handleCityChange} />
-            <input type="text" placeholder="Zip Code" onChange={handleZipChange} />
+            <input type="text" placeholder="Name" onChange={handleNameChange} required/>
+            <input type="text" placeholder="Street Address" onChange={handleAddressChange} required/>
+            <input type="text" placeholder="City" onChange={handleCityChange} required/>
+            <input type="text" placeholder="Zip Code" onChange={handleZipChange} required/>
             <label>
-                <input type="radio" value="Pickup" onChange={handlePickupChange} name="method" />
+                <input type="radio" value="Pickup" onChange={handlePickupChange} name="method" checked/>
                 Pickup
             </label>
             <label>
                 <input type="radio" value="Delivery" onChange={handleDeliveryChange} name="method" />
                 Delivery
             </label>
-            <button type="submit" onClick={nextPage}>Next</button>
+            <button type="submit">Submit</button>
         </form>
+        <button onClick={nextPage}>Next Page</button>
         </>
     )
 }

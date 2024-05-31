@@ -35,12 +35,12 @@ function App() {
       <Route path='/' exact>
         <PizzaList />
       </Route>
-      {/* <Route path='/api/customer_form'>
+      <Route path='/api/customer_form'>
         <CustomerForm />
       </Route>
       <Route path='/api/checkout'>
         <Checkout />
-      </Route> */}
+      </Route>
     </div>
     </Router>
   );

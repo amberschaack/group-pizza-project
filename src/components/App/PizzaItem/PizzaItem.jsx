@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useDispatch } from 'react-redux';
 
-export default function PizzaItem({ pizza, fetchPizzas }) {
+export default function PizzaItem({ pizza }) {
     const [isShown, setIsShown] = useState(true);
     const [isAdded, setIsAdded] = useState(true);
     const dispatch = useDispatch();
@@ -20,11 +20,13 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
     const addPizza = () => {
         console.log(pizza.price);
         dispatch({ type: 'ADD_PIZZA', payload: pizza.price});
+        dispatch({ type: 'ADD_TO_CART', payload: pizza});
         setIsAdded(!isAdded);
     }
 
     const removePizza = () => {
         dispatch({ type: 'REMOVE_PIZZA', payload: pizza.price});
+        dispatch({ type: 'REMOVE_FROM_CART', payload: pizza});
         setIsAdded(!isAdded);
     }
 
