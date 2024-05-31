@@ -16,7 +16,7 @@ export default function Checkout() {
     }
 
     const customerReducer = useSelector(store => store.customerReducer);
-    const pizzaReducer = useSelector(store => store.pizzaReducer);
+    const cartReducer = useSelector(store => store.pizzaReducer);
 
     return (
         <>
@@ -24,9 +24,9 @@ export default function Checkout() {
         {customerReducer.customer_name}
         {customerReducer.street_address}
         {customerReducer.city}
-        {pizzaReducer.type}
-        {pizzaReducer.name}
-        {pizzaReducer.price}
+        {cartReducer.type}
+        {cartReducer.name}
+        {cartReducer.price}
         <div>
             <button onClick={(event) => handleCheckout(event)}>Checkout</button>
         </div>

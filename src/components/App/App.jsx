@@ -6,9 +6,10 @@ import Header from '../Header/Header';
 import CustomerForm from '../CustomerForm/CustomerForm';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Checkout from '../Checkout/Checkout';
+import { useDispatch } from 'react-redux';
 
 function App() {
-  const [pizzas, setPizzas] = useState([]);
+  const dispatch = useDispatch();  
 
   useEffect(() => {
     fetchPizzas();
@@ -18,7 +19,7 @@ function App() {
     axios
       .get('/api/pizza')
       .then((response) => {
-        setPizzas(response.data);
+        dispatch({ type: 'SET_PIZZAS', payload: response.data });
       })
       .catch((error => {
         alert('Error getting pizzas');
@@ -27,21 +28,19 @@ function App() {
   }
 
   return (
+
     <Router>
     <div className='App'>
       <Header />
       <Route path='/' exact>
-      <PizzaList 
-      pizzas={pizzas}
-      fetchPizzas={fetchPizzas}
-      />
+        <PizzaList />
       </Route>
-      <Route path='/api/customer_form'>
+      {/* <Route path='/api/customer_form'>
         <CustomerForm />
       </Route>
       <Route path='/api/checkout'>
         <Checkout />
-      </Route>
+      </Route> */}
     </div>
     </Router>
   );

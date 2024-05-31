@@ -1,9 +1,11 @@
 import { useHistory } from "react-router-dom";
 import PizzaItem from "../PizzaItem/PizzaItem";
 import { Button } from '@mui/material';
+import { useSelector } from "react-redux";
 
-export default function PizzaList({ pizzas, fetchPizzas }) {
+export default function PizzaList({ fetchPizzas }) {
     const history = useHistory();
+    const pizzas = useSelector(store => store.pizzaReducer);
 
     const nextPage = () => {
         console.log('Go to next page');
@@ -12,6 +14,7 @@ export default function PizzaList({ pizzas, fetchPizzas }) {
 
     return (
         <>
+        <h1>Pizza List</h1>
         <div>
             {pizzas.map((pizza) => (
                 <PizzaItem 

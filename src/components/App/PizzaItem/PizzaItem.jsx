@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 
 export default function PizzaItem({ pizza, fetchPizzas }) {
     const [isShown, setIsShown] = useState(true);
+    const [isAdded, setIsAdded] = useState(true);
     const dispatch = useDispatch();
 
     const togglePic = (pizzaid) => {
@@ -18,11 +19,13 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
 
     const addPizza = () => {
         console.log(pizza.price);
-        dispatch({ type: 'ADD_PIZZA', payload: pizza.price})
+        dispatch({ type: 'ADD_PIZZA', payload: pizza.price});
+        setIsAdded(!isAdded);
     }
 
     const removePizza = () => {
-        dispatch({ type: 'REMOVE_PIZZA', payload: pizza.price})
+        dispatch({ type: 'REMOVE_PIZZA', payload: pizza.price});
+        setIsAdded(!isAdded);
     }
 
     return (
@@ -38,8 +41,9 @@ export default function PizzaItem({ pizza, fetchPizzas }) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button onClick={addPizza}>Add</Button>
+                    {isAdded ? <Button onClick={addPizza}>Add</Button> : 
                     <Button onClick={removePizza}>Remove</Button>
+                    }
                 </CardActions>
             </Card>
             :
