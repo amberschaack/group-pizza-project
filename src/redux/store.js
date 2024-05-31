@@ -24,7 +24,7 @@ const cartReducer = (state = [], action) => {
   if (action.type === 'ADD_TO_CART') {
     return [...state, action.payload];
   } else if (action.type === 'REMOVE_FROM_CART') {
-    return state.filter((pizza) => Number(pizza.id )!== Number(action.payload.id));
+    return state.filter((pizza) => Number(pizza.id) !== Number(action.payload.id));
   } else if(action.type === 'CLEAR'){
     return [];
   }

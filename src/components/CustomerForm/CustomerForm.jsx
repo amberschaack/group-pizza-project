@@ -72,7 +72,7 @@ export default function CustomerForm() {
             <input type="text" placeholder="City" onChange={handleCityChange} required/>
             <input type="text" placeholder="Zip Code" onChange={handleZipChange} required/>
             <label>
-                <input type="radio" value="Pickup" onChange={handlePickupChange} name="method" checked/>
+                <input type="radio" value="Pickup" onChange={handlePickupChange} name="method" defaultChecked/>
                 Pickup
             </label>
             <label>
